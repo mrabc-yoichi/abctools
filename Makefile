@@ -13,19 +13,19 @@ SOURCES = abcknob.c
 PDOBJECTS = abcknob.pd
 
 # example patches and related files, in the 'examples' subfolder
-EXAMPLES = 
+EXAMPLES =
 
 # manuals and related files, in the 'manual' subfolder
-MANUAL = 
+MANUAL =
 
 # if you want to include any other files in the source and binary tarballs,
 # list them here.  This can be anything from header files, test patches,
 # documentation, etc.  README.txt and LICENSE.txt are required and therefore
 # automatically included
-EXTRA_DIST = 
+EXTRA_DIST =
 
 # unit tests and related files here, in the 'unittests' subfolder
-UNITTESTS = 
+UNITTESTS =
 
 
 
@@ -36,9 +36,9 @@ UNITTESTS =
 #------------------------------------------------------------------------------#
 
 ALL_CFLAGS = -I"$(PD_INCLUDE)"
-ALL_LDFLAGS =  
+ALL_LDFLAGS =
 SHARED_LDFLAGS =
-ALL_LIBS = 
+ALL_LIBS =
 
 
 #------------------------------------------------------------------------------#
@@ -48,17 +48,18 @@ ALL_LIBS =
 #------------------------------------------------------------------------------#
 
 # these can be set from outside without (usually) breaking the build
-CFLAGS = 
+CFLAGS =
 LDFLAGS =
 LIBS =
 
 # get library version from meta file
-LIBRARY_VERSION = 
+LIBRARY_VERSION =
 #$(shell sed -n 's|^\#X text [0-9][0-9]* [0-9][0-9]* VERSION \(.*\);|\1|p' $(LIBRARY_NAME)-help.pd)
 
 ALL_CFLAGS += -DPD -DVERSION='"$(LIBRARY_VERSION)"'
 
-PD_INCLUDE = $(PD_PATH)/include/pd
+#PD_INCLUDE = $(PD_PATH)/include/pd
+PD_INCLUDE = $(PD_PATH)/src
 # where to install the library, overridden below depending on platform
 prefix = /usr/local
 libdir = $(prefix)/lib
@@ -84,7 +85,8 @@ ifeq ($(UNAME),Darwin)
     EXTENSION = pd_darwin
     SHARED_EXTENSION = dylib
     OS = iphoneos
-    PD_PATH = /Applications/Pd-extended.app/Contents/Resources
+#    PD_PATH = /Applications/Pd-extended.app/Contents/Resources
+    PD_PATH = /Applications/Pd-0.47-1-64bit.app/Contents/Resources
     IPHONE_BASE=/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin
     CC=$(IPHONE_BASE)/gcc
     CPP=$(IPHONE_BASE)/cpp
@@ -103,7 +105,8 @@ ifeq ($(UNAME),Darwin)
     EXTENSION = pd_darwin
     SHARED_EXTENSION = dylib
     OS = macosx
-    PD_PATH = /Applications/Pd-extended.app/Contents/Resources
+#    PD_PATH = /Applications/Pd-extended.app/Contents/Resources
+    PD_PATH = /Applications/Pd-0.47-1-64bit.app/Contents/Resources
     OPT_CFLAGS = -O3 -fast
 # build universal 32-bit on 10.4 and 32/64 on newer
     ifeq ($(shell uname -r | sed 's|\([0-9][0-9]*\)\.[0-9][0-9]*\.[0-9][0-9]*|\1|'), 8)
@@ -150,7 +153,7 @@ ifeq ($(UNAME),ANDROID)
 	$(NDK_BASE)/toolchains/$(NDK_ABI)*-$(NDK_COMPILER_VERSION)/prebuilt/$(NDK_UNAME)-x86)
   CC := $(wildcard $(NDK_TOOLCHAIN)/bin/*-linux-android*-gcc) --sysroot=$(NDK_SYSROOT)
   OPT_CFLAGS = -O6 -funroll-loops -fomit-frame-pointer
-  CFLAGS += 
+  CFLAGS +=
   LDFLAGS += -rdynamic -shared
   SHARED_LDFLAGS += -Wl,-soname,$(SHARED_LIB) -shared
   LIBS += -lc $(LIBS_android)
@@ -236,7 +239,7 @@ ifeq (CYGWIN,$(findstring CYGWIN,$(UNAME)))
   OS = cygwin
   PD_PATH = $(shell cygpath $$PROGRAMFILES)/pd
   OPT_CFLAGS = -O6 -funroll-loops -fomit-frame-pointer
-  ALL_CFLAGS += 
+  ALL_CFLAGS +=
   ALL_LDFLAGS += -shared -L"$(PD_PATH)/src" -L"$(PD_PATH)/bin"
   SHARED_LDFLAGS += -shared -Wl,-soname,$(SHARED_LIB)
   ALL_LIBS += -lc -lpd $(LIBS_cygwin)
