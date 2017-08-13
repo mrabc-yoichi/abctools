@@ -8,9 +8,10 @@
 
 /* abcknob.c*/
 /* Release 1a 20140417 */
-/* Release 1b-47 20170811 */
+/* Release 2a 20170814 */
 /* Copyright (c) 2014-2017 Yoichi HIRATA */
-/* http://tkrkapps.blogspot.jp */
+/* https://tkrkapps.blogspot.jp */
+/* https://github.com/mrabc-yoichi/abctools */
 
 
 #include <stdlib.h>
