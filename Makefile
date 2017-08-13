@@ -86,7 +86,7 @@ ifeq ($(UNAME),Darwin)
     SHARED_EXTENSION = dylib
     OS = iphoneos
 #    PD_PATH = /Applications/Pd-extended.app/Contents/Resources
-    PD_PATH = /Applications/Pd-0.47-1-64bit.app/Contents/Resources
+    PD_PATH = /Applications/Pd-0.47-1-32bit.app/Contents/Resources
     IPHONE_BASE=/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin
     CC=$(IPHONE_BASE)/gcc
     CPP=$(IPHONE_BASE)/cpp
@@ -106,7 +106,7 @@ ifeq ($(UNAME),Darwin)
     SHARED_EXTENSION = dylib
     OS = macosx
 #    PD_PATH = /Applications/Pd-extended.app/Contents/Resources
-    PD_PATH = /Applications/Pd-0.47-1-64bit.app/Contents/Resources
+    PD_PATH = /Applications/Pd-0.47-1-32bit.app/Contents/Resources
     OPT_CFLAGS = -O3 -fast
 # build universal 32-bit on 10.4 and 32/64 on newer
     ifeq ($(shell uname -r | sed 's|\([0-9][0-9]*\)\.[0-9][0-9]*\.[0-9][0-9]*|\1|'), 8)
